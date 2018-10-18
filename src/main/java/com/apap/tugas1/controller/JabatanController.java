@@ -22,40 +22,31 @@ public class JabatanController {
 	private JabatanService jabatanService;
 	
 	@RequestMapping(value="/jabatan/view", method= RequestMethod.GET)
-	private String lihatPegawai(@RequestParam("id") long id, Model model) {
-		model.addAttribute("title", "Detail jabatan");
-		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+	private String lihatJabatan(@RequestParam("idJabatan") Long idJawaban, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(idJawaban);
 		model.addAttribute("jabatan", jabatan);
+		
 		return "lihat-jabatan";
 	}
-	
-	@RequestMapping(value="/jabatan/viewAll", method= RequestMethod.GET)
-	private String viewAll(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-		model.addAttribute("title", "View Pilot");
-		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		model.addAttribute("pilot", pilot);
-		List<FlightModel> pilotFlight = pilot.getPilotFlight();
-		model.addAttribute("pilotFlight", pilotFlight);
-		return "view-pilot";
-		
-	}
-	
+
 	@RequestMapping(value="/jabatan/tambah", method = RequestMethod.GET)
 	private String tambah(Model model) {
-		model.addAttribute("title", "Tambah Jabatan");
-		model.addAttribute("jabatan", new JabatanModel());
+		JabatanModel jabatan = new JabatanModel();
+		model.addAttribute("jabatan", jabatan);
 		return "tambah-jabatan";
 	}
 	
 	@RequestMapping(value="/jabatan/tambah", method = RequestMethod.POST)
-	private String tambahJabatanSubmit(@ModelAttribute JabatanModel jabatan) {
-		jabatanService.tambahJabatan(jabatan);
-		return "sukses-tambah-pegawai";
+	private String tambahJabatanSubmit(@ModelAttribute JabatanModel jabatan_tambah, Model model) {
+		jabatanService.tambahJabatan(jabatan_tambah);
+		
+		JabatanModel jabatan = new JabatanModel();
+		model.addAttribute("jabatan", jabatan);
+		return "sukses-tambah-jabatan";
 	}
 	
 	@RequestMapping(value="/jabatan/ubah/", method = RequestMethod.GET)
 	private String updatePilot(@RequestParam(value="id") long id, Model model) {
-		model.addAttribute("title", "Ubah Jabatan");
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
 		model.addAttribute("jabatanBaru", new JabatanModel());

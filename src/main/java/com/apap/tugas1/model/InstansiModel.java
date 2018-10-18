@@ -43,7 +43,7 @@ public class InstansiModel implements Serializable {
 	@Column(name="gaji_pokok", nullable=false)
 	private Double gaji_pokok;
 	
-	@OneToMany(mappedBy="Instansi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="instansi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PegawaiModel> instansiPegawai;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

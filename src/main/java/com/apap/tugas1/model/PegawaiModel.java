@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -60,15 +61,10 @@ public class PegawaiModel implements Serializable{
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private InstansiModel instansi;
-	
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(
-			name = "Jabatan_pegawai",
-			joinColumns = @JoinColumn(name = "id_pegawai", referencedColumnName="id"),
-			inverseJoinColumns = @JoinColumn(name="id_jabatan", referencedColumnName = "id")
-			)
-	private List<JabatanModel> jabatan;
 
+	@OneToMany(mappedBy = "pegawai", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<JabatanPegawaiModel> jabatanPegawaiList;
+	
 	public long getId() {
 		return id;
 	}
@@ -125,12 +121,12 @@ public class PegawaiModel implements Serializable{
 		this.instansi = instansi;
 	}
 
-	public List<JabatanModel> getJabatan() {
-		return jabatan;
+	public List<JabatanPegawaiModel> getJabatanPegawaiList() {
+		return jabatanPegawaiList;
 	}
 
-	public void setJabatan(List<JabatanModel> jabatan) {
-		this.jabatan = jabatan;
+	public void setJabatanPegawaiList(List<JabatanPegawaiModel> jabatanPegawaiList) {
+		this.jabatanPegawaiList = jabatanPegawaiList;
 	}
 	
 	

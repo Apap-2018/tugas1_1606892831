@@ -43,11 +43,11 @@
 							Pilih Jabatan
 						</div>
 						<form th:action="@{/jabatan/view}" method="GET">
-							<div class="card-body">
-								<input type="text" name="nip" class="form-control">
-								<p></p>
-								<button type="submit" class="btn btn-primary">Lihat</button>
-							</div>
+							<select name="idJabatan">
+							    <option th:each="jabatan : ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"/>
+							</select><br>
+						<br>	
+						<button type="submit">Lihat</button>		
 						</form>
 					</div>
 				</div>

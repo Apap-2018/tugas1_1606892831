@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<batan</title>
+<title></title>
 </head>
 <body>
-	<h2 th:text="'Detail Jabatan ' + ${flight.time}"></h2>
-	<h3 th:text="'Nama ' + ${flight.origin}"></h3>
-	<h3 th:text="'Deskripsi ' + ${flight.destination}"></h3>
-	<h3 th:text="'Gaji Pokok ' + ${pilot.name}"></h3>
+	<h2 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h2>
+	<h3 th:text="'Nama ' + ${jabatan.nama}"></h3>
+	<h3 th:text="'Deskripsi ' + ${jabatan.deskripsi}"></h3>
+	<h3 th:text="'Gaji Pokok ' + ${jabatan.gaji_pokok}"></h3>
 
-	<td><a th:href="@{'/flight/update/'+ ${flight.id}}">Ubah </a></td>
-	<td><a th:href="@{'/flight/delete/'+ ${flight.id}}">Hapus </a></td>
+	<td><a th:href="@{'/jabatan/ubah/'+ ${jabatan.id}}">Ubah </a></td>
+	<td><a th:href="@{'/jabatan/hapus/'+ ${jabatan.id}}">Hapus </a></td>
 </body>
 </html>

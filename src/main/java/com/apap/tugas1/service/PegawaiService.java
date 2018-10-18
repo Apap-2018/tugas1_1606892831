@@ -10,4 +10,6 @@ public interface PegawaiService {
 	;
 	void tambahPegawai(PegawaiModel pegawai);
 	void ubahPegawai(PegawaiModel pegawai);
+	
+	int hitungGajiByNIP(String nip);
 }
