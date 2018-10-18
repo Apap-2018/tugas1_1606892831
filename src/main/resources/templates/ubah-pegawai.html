@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ubah Pegawai</title>
+</head>
+<body>
+	<h2>Ubah Pegawai</h2>
+	<form th:action="@{/pegawai/tambah}" th:object="${flight}" method="POST">
+		Nama : 
+		<input type="text" name="name"/>
+		<br>
+		Tempat Lahir:
+		<input type="text" name="tempatLahir"/>
+		<br>
+		Tanggal Lahir:
+		<input type="date" name="tanggalLahir"/>
+		<br>
+		Tahun Masuk:
+		<input type="date" name="tahunMasuk"/>
+		<br>
+		Provinsi:
+		<input type="date" name="tahunMasuk"/>
+		<br>
+		Nama Instansi:
+		<input type="date" name="tahunMasuk"/>
+		Jabatan:
+		<input type="date" name="tahunMasuk"/>
+		<br><br>
+		<button type="submit">Simpan</button>
+	</form>
+</body>
+</html>

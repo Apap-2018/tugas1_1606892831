@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detail Pegawai</title>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"
+	></nav>
+	
+	<h2 th:text="'Lihat Data Pegawai - ' + ${flight.flightNumber}"></h2>
+	<h3 th:text="'NIP 					: ' + ${pegawai.nip}"></h3>
+	<h3 th:text="'Nama 					: ' + ${pegawai.nama}"></h3>
+	<h3 th:text="'Tempat Lahir 			: ' + ${pegawai.tempat_lahir}"></h3>
+	<h3 th:text="'Tanggal Lahir 		: ' + ${pegawai.tanggal_lahir}"></h3>
+	<h3 th:text="'Tahun Masuk			: ' + ${pegawai.tahun_masuk}"></h3>
+	<h3 th:text="'Nama Instansi			: ' + ${pegawai}"></h3>
+	<h3 th:text="'Jabatan				: ' + ${pilot.licenseNumber}"></h3>
+	<h3 th:text="'Gaji 					: ' + ${pilot.licenseNumber}"></h3>
+	<br>
+	<td><a th:href="@{'/pegawai/ubah/'+ ${pegawai.id}}">Ubah </a></td>
+</body>
+</html>

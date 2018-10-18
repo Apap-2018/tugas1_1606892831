@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"
+	></nav>
+	<div class="container-fluid">
+		<div class="title">
+			<h2>Sistem Informasi Kepegawaian</h2>
+			<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h3 class="card-header"> Lihat Data Pegawai berdasarkan NIP
+				</h3>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							Masukan Nomor Induk Pegawai
+						</div>
+						<form th:action="@{/pegawai}" method="GET">
+							<div class="card-body">
+								<input type="text" name="nip" class="form-control">
+								<p></p>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3 class="card-header"> Lihat Detail Jabatan
+				</h3>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							Pilih Jabatan
+						</div>
+						<form th:action="@{/jabatan/view}" method="GET">
+							<div class="card-body">
+								<input type="text" name="nip" class="form-control">
+								<p></p>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3 class="card-header"> Lihat Pegawai Termuda dan Tertua
+				</h3>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							Pilih Instansi
+						</div>
+						<form th:action="@{/jabatan/view}" method="GET">
+							<div class="card-body">
+								<input type="text" name="nip" class="form-control">
+								<p></p>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
