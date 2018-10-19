@@ -19,8 +19,6 @@ public class JabatanController {
 	
 	@Autowired 
 	private JabatanService jabatanService;
-	
-	
 
 	@RequestMapping(value="/jabatan/view", method= RequestMethod.GET)
 	private String lihatJabatan(@RequestParam("idJabatan") Long idJawaban, Model model) {
@@ -81,7 +79,7 @@ public class JabatanController {
 		return "sukses-hapus-jabatan";
 	}
 	
-	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+	@RequestMapping(value = "/jabatan/viewAll", method = RequestMethod.GET)
 	public String lihatSemuaJabatan(Model model) {
 		
 		List<JabatanModel> listJabatan = jabatanService.findAll();

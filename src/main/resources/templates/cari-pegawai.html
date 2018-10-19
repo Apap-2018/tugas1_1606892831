@@ -71,11 +71,39 @@
 						<td th:text="${pegawai.nama}"></td>
 						<td th:text="${pegawai.tempat_lahir}"></td>
 						<td th:text="${pegawai.tanggal_lahir}"></td>
-						<td th:text="${pegawai.tahun_masuk}"></td>					
+						<td th:text="${pegawai.tahun_masuk}"></td>	
+						<td th:text="${pegawai.tahunMasuk}"></td>
+						<td th:text="${pegawai.instansi.nama}"></td>
+						<td>
+							<ol>
+								<li th:each="jabatan: ${pegawai.jabatanPegawaiList}" th:text="${jabatan.nama}"></li>
+							</ol>
+						</td>				
 					</tr>
 				</tbody>
 		</table>
 
-		<script th:src="@{/js/datatable.js}"></script>
+		<script>
+			$(document).ready( function () {
+			    $('#table_id').DataTable();
+			} );
+			
+			$('#provinsi').change(
+			     function() {
+			         $.getJSON("/", {
+			             provinsiId : $(this).val(),
+			             ajax : 'true'
+			         }, function(data) {
+			             var html = '<option value="">Pilih Instansi</option>';
+			             var len = data.length;
+			             for ( var i = 0; i < len; i++) {
+			                 html += '<option value="' + data[i].id + '">'
+			                         + data[i].nama + '</option>';
+			             }
+			             html += '</option>';
+			             $('#instansi').html(html);
+				});
+			});
+		</script>
 </body>
 </html>
