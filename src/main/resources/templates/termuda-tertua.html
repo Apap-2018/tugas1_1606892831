@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html xlmns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Detail Pegawai</title>
+	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
 </head>
 <body>
-	<h2>Data Pegawai Termuda</h2>
-	<h3 th:text="'NIP : ' + ${flight.time}"></h3>
-	<h3 th:text="'Nama : ' + ${flight.origin}"></h3>
-	<h3 th:text="'Tempat Lahir : ' + ${flight.destination}"></h3>
-	<h3 th:text="'Tanggal Lahir : ' + ${pilot.name}"></h3>
-	<h3 th:text="'Tahun Masuk: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Nama Instansi: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Jabatan: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Gaji : ' + ${pilot.licenseNumber}"></h3>
-	<br>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
 
-	<h2>Data Pegawai Tertua</h2>
-	<h3 th:text="'NIP : ' + ${flight.time}"></h3>
-	<h3 th:text="'Nama : ' + ${flight.origin}"></h3>
-	<h3 th:text="'Tempat Lahir : ' + ${flight.destination}"></h3>
-	<h3 th:text="'Tanggal Lahir : ' + ${pilot.name}"></h3>
-	<h3 th:text="'Tahun Masuk: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Nama Instansi: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Jabatan: ' + ${pilot.licenseNumber}"></h3>
-	<h3 th:text="'Gaji : ' + ${pilot.licenseNumber}"></h3>
-	<br>
-	
-	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Data Pegawai Termuda</h2>
+				<h3 th:text="'NIP : ' + ${PegawaiTermuda.nip}"></h3>
+				<h3 th:text="'Nama : ' + ${PegawaiTermuda.nama}"></h3>
+				<h3 th:text="'Tempat Lahir : ' + ${PegawaiTermuda.tempat_lahir}"></h3>
+				<h3 th:text="'Tanggal Lahir : ' + ${PegawaiTermuda.tanggal_lahir}"></h3>
+				<h3 th:text="'Tahun Masuk: ' + ${PegawaiTermuda.tahun_masuk}"></h3>
+				<h3 th:text="'Nama Instansi: ' + ${PegawaiTermuda.instansi.nama}"></h3>
+				<p>
+					<div class="row">
+						<div class="col-lg-4">Jabatan</div>
+						<div class="col-lg-8">
+							<ul th:each="jabatan : ${PegawaiTermuda.jabatanPegawaiList}">
+								<li th:text="${jabatan.jabatan.nama}" ></li>
+							
+							</ul>
+						</div>
+					</div>
+				</p>
+				<h3 th:text="'Gaji : Rp ' + ${gajiPegawaiTermuda}"></h3>
+				<br>
+			</div>
+			<div class="col-md-6">
+				<h2>Data Pegawai Tertua</h2>
+				<h3 th:text="'NIP : ' + ${pegawaiTertua.nip}"></h3>
+				<h3 th:text="'Nama : ' + ${pegawaiTertua.nama}"></h3>
+				<h3 th:text="'Tempat Lahir : ' + ${PegawaiTertua.tempat_lahir}"></h3>
+				<h3 th:text="'Tanggal Lahir : ' + ${pegawaiTertua.tanggal_lahir}"></h3>
+				<h3 th:text="'Tahun Masuk: ' + ${PegawaiTertua.tahun_masuk}"></h3>
+				<h3 th:text="'Nama Instansi: ' + ${PegawaiTertua.instansi.nama}"></h3>
+				<p>
+					<div class="row">
+						<div class="col-lg-4">Jabatan</div>
+						<div class="col-lg-8">
+							<ul th:each="jabatan : ${PegawaiTertua.jabatanPegawaiList}">
+								<li th:text="${jabatan.jabatan.nama}" ></li>
+							
+							</ul>
+						</div>
+					</div>
+				</p>
+				<h3 th:text="'Gaji : Rp ' + ${gajiPegawaiTertua}"></h3>
+				<br>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

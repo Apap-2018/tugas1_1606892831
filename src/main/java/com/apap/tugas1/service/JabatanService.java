@@ -8,6 +8,5 @@ public interface JabatanService {
 	JabatanModel getJabatanDetailById(long id);
 	List<JabatanModel> findAll();
 	void tambahJabatan(JabatanModel jabatan);
-	void ubahJabatan(JabatanModel jabatan);
 	void hapusJabatan(JabatanModel jabatan);
 }

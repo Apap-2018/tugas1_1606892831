@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
 </head>
 <body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
 	<h2 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h2>
 	<h3 th:text="'Nama ' + ${jabatan.nama}"></h3>
 	<h3 th:text="'Deskripsi ' + ${jabatan.deskripsi}"></h3>
 	<h3 th:text="'Gaji Pokok ' + ${jabatan.gaji_pokok}"></h3>
 
-	<td><a th:href="@{'/jabatan/ubah/'+ ${jabatan.id}}">Ubah </a></td>
-	<td><a th:href="@{'/jabatan/hapus/'+ ${jabatan.id}}">Hapus </a></td>
+
+	<form th:action="@{/jabatan/ubah}" method="GET">
+		<input type="hidden" name="idJabatan" th:value="${jabatan.id}">
+		<button type="submit">Ubah</button>	
+	</form>
+				
+	<form th:action="@{/jabatan/hapus}" method="POST">
+		<input type="hidden" name="idJabatan" th:value="${jabatan.id}">
+		<button type="submit">Hapus</button>	
+	</form>
 </body>
 </html>

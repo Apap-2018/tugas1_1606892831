@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>Cari Pegawai</title>
-	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
-	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
 </head>
+
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<form th:action="@{'/pegawai/cari}" th:object="${}" method="POST">
-		<table>
-		  <thead>
-		    <tr>
-		    	<th style="text-align: center">Provinsi </th>
-		      <th style="text-align: center">Nama Instansi</th>
-		      <th style="text-align: center">Jabatan</th>
-		      
-		      <th>
-		        <button type="submit" name="cari" class="btn btn-primary btn-sm">Cari</button>
-		      </th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr th:each="pegawai,rowStat : *{pilotFlight}">
-		      <td th:text="${rowStat.count}">1</td>
-		      <td>
-		        <input type="text" th:field="*{pilotFlight[__${rowStat.index}__].flightNumber}" />
-		      </td>
-		      <td>
-		        <input type="text" th:field="*{pilotFlight[__${rowStat.index}__].origin}" />
-		      </td>
-		      <td>
-		        <input type="text" th:field="*{pilotFlight[__${rowStat.index}__].destination}" />
-		      </td>
-		      <td>
-		        <input type="date" th:field="*{pilotFlight[__${rowStat.index}__].time}" />
-		      </td>
-		      <td>
-		        <button type="submit" name="removeRow" 
-		                th:value="${rowStat.index}" class="btn btn-danger btn-sm">Remove flight</button>
-		      </td>
-		    </tr>
-		  </tbody>
+	<div class="container">
+			<div class="row">
+				<h2>Tambah Pegawai</h2>
+			</div>
+			
+			<form th:action="@{/pegawai/tambah}" th:object="${pegawai}" method="GET">
+				<p>
+				<div class="row">
+					<div class="col-lg-4">Provinsi</div>
+					<div class="col-lg-4">
+						<select id="provinsi" name="provinsi">
+						    <option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"/>
+						</select>
+					</div>
+				</div>
+				</p>
+				
+				<p>
+				<div class="row">
+					<div class="col-lg-4">Nama Instansi</div>
+					<div class="col-lg-4">
+						<select name="instansi" th:value="*{instansi}" id="instansi">
+						    <option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"/>
+						</select>
+					</div>
+				</div>
+				</p>
+				
+				<p>
+				<div class="row">
+					<div class="col-lg-4">Jabatan</div>
+					<div class="col-lg-8" th:each="jabatanPegawai, statusJabatan : *{jabatanPegawaiList}" >
+						<select th:field="*{jabatanPegawaiList[__${statusJabatan.index}__].jabatan}" class="col-lg-12">
+						    <option th:each="jabatan, status : ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"/>
+						</select>
+						
+					</div>
+						
+				</div>
+				<br>
+				
+				<button type="submit">Cari</button>
+			</form>
+		</div>
+
+		<br><br>
+		<table id="table_id" class="display">
+			<thead>
+					<tr>
+						<th>NIP</th>
+						<th>Nama</th>
+						<th>Tempat Lahir</th>
+						<th>Tanggal Lahir</th>
+						<th>Tahun Masuk</th>
+						<th>Nama Instansi</th>
+						<th>Jabatan</th>
+					
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pegawai : *{listPegawai}">
+						<td th:text="${pegawai.nip}"></td>
+						<td th:text="${pegawai.nama}"></td>
+						<td th:text="${pegawai.tempat_lahir}"></td>
+						<td th:text="${pegawai.tanggal_lahir}"></td>
+						<td th:text="${pegawai.tahun_masuk}"></td>					
+					</tr>
+				</tbody>
 		</table>
-		<button type="submit" name="save" class="btn btn-primary btn-sm">Submit</button>
-	</form>
+
+		<script th:src="@{/js/datatable.js}"></script>
 </body>
 </html>

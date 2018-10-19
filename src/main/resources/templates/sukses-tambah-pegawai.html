@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Sukses</title>
+	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
 </head>
 <body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
 	<h2>Sukses!</h2>
-	<h3 th:text="'Pegawai dengan NIP ' + ${pegawai.nip} +' berhasil ditambahkan"></h3>
+	
+	<h3 th:text="'Pegawai dengan NIP ' + ${nipPegawai} +' berhasil ditambahkan"></h3>
 
 </body>
 </html>

@@ -24,21 +24,15 @@ public class JabatanServiceImpl implements JabatanService{
 	}
 
 	@Override
-	public void ubahJabatan(JabatanModel jabatan) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void hapusJabatan(JabatanModel jabatan) {
 		// TODO Auto-generated method stub
-		
+		jabatanDb.delete(jabatan);
 	}
 
 	@Override
 	public JabatanModel getJabatanDetailById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return jabatanDb.findById(id).get();
 	}
 
 	@Override

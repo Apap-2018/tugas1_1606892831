@@ -39,10 +39,6 @@ public class InstansiModel implements Serializable {
 	@Column(name="deskripsi", nullable=false)
 	private String deskripsi;
 	
-	@NotNull
-	@Column(name="gaji_pokok", nullable=false)
-	private Double gaji_pokok;
-	
 	@OneToMany(mappedBy="instansi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<PegawaiModel> instansiPegawai;
 	
@@ -74,14 +70,6 @@ public class InstansiModel implements Serializable {
 
 	public void setDeskripsi(String deskripsi) {
 		this.deskripsi = deskripsi;
-	}
-
-	public Double getGaji_pokok() {
-		return gaji_pokok;
-	}
-
-	public void setGaji_pokok(Double gaji_pokok) {
-		this.gaji_pokok = gaji_pokok;
 	}
 
 	public List<PegawaiModel> getInstansiPegawai() {

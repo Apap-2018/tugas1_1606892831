@@ -1,6 +1,7 @@
 package com.apap.tugas1.service;
 
 import java.util.List;
+import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.tugas1.model.JabatanPegawaiModel;
 import com.apap.tugas1.model.PegawaiModel;
+import com.apap.tugas1.model.InstansiModel;
+import com.apap.tugas1.model.ProvinsiModel;
+
+import com.apap.tugas1.service.PegawaiService;
 import com.apap.tugas1.repository.PegawaiDb;
 
 @Service
@@ -26,27 +31,6 @@ public class PegawaiServiceImpl implements PegawaiService{
 	public void tambahPegawai(PegawaiModel pegawai) {
 		pegawaiDb.save(pegawai);
 		
-	}
-
-	@Override
-	public void ubahPegawai(PegawaiModel pegawaiSetelahUbah) {
-		PegawaiModel pegawaiSebelumUbah = this.getPegawaiDetailByNip(pegawaiSetelahUbah.getNip());
-		pegawaiSebelumUbah.setNama(pegawaiSetelahUbah.getNama());
-		pegawaiSebelumUbah.setTempat_lahir(pegawaiSetelahUbah.getTempat_lahir());
-		pegawaiSebelumUbah.setTanggal_lahir(pegawaiSetelahUbah.getTanggal_lahir());
-		pegawaiSebelumUbah.setTahun_masuk(pegawaiSetelahUbah.getTahun_masuk());
-		
-	}
-
-	@Override
-	public PegawaiModel getPegawaiDetailByIdInstansi(String id_instansi) {
-		return null;
-	}
-
-	@Override
-	public PegawaiModel getPegawaiDetailByIdJabatan(String id_jabatan) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -69,6 +53,44 @@ public class PegawaiServiceImpl implements PegawaiService{
 		gajiPokok += (presentaseTunjangan*gajiPokok)/100;
 		
 		return (int) gajiPokok;
+	}
+
+	@Override
+	public String buatNIP(InstansiModel instansi, PegawaiModel pegawai) {
+		// TODO Auto-generated method stub
+		
+		ProvinsiModel provinsi = instansi.getProvinsi();
+		
+		String nip = "";
+		nip += instansi.getId();
+
+		Date tanggalLahir = pegawai.getTanggal_lahir();
+		String[] tglLahir = (""+tanggalLahir).split("-");
+		for (int i = tglLahir.length-1; i >= 0; i--) {
+			int ukuranTgl = tglLahir[i].length();
+			nip += tglLahir[i].substring(ukuranTgl-2, ukuranTgl);
+		}
+		
+		nip += pegawai.getTahun_masuk();
+		
+		List<PegawaiModel> listPegawai = pegawaiDb.findByTanggalLahirAndTahunMasukAndInstansi(pegawai.getTanggal_lahir(), pegawai.getTahun_masuk(), pegawai.getInstansi());
+		
+		int banyakPegawai = listPegawai.size();
+		
+		if (banyakPegawai >= 10) {
+			nip += banyakPegawai;
+		}
+		else {
+			nip += "0" + (banyakPegawai+1);
+		}
+		
+		
+		return nip;
+	}
+	@Override
+	public List<PegawaiModel> findByInstansiOrderByTanggalLahirAsc(InstansiModel instansi) {
+		// TODO Auto-generated method stub
+		return pegawaiDb.findByInstansiOrderByTanggalLahirAsc(instansi);
 	}
 
 }

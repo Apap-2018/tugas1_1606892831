@@ -14,11 +14,24 @@
 	<h3 th:text="'Tempat Lahir 			: ' + ${pegawai.tempat_lahir}"></h3>
 	<h3 th:text="'Tanggal Lahir 		: ' + ${pegawai.tanggal_lahir}"></h3>
 	<h3 th:text="'Tahun Masuk			: ' + ${pegawai.tahun_masuk}"></h3>
-	<h3 th:text="'Nama Instansi			: ' + ${pegawai.instansi.nama}"></h3>
-	<h3 th:text="'Jabatan				: '"></h3>
-	<h3 th:each="jabatan : ${listjabatan}" th:text="${jabatan.jabatan.nama}"></h3>
+	<h3 th:text="'Nama Instansi			: ' + ${instansi.nama}"></h3>
+	<p>
+		<div class="row">
+			<div class="col-lg-4">Jabatan</div>
+			<div class="col-lg-8">
+				<ul th:each="jabatan : ${listJabatan}">
+					<li th:text="${jabatan.jabatan.nama}" ></li>
+					
+				</ul>
+			</div>
+		</div>
+	</p>
 	<br>
 	<h3 th:text="'Gaji : Rp '+ ${gaji} " ></h3>
-	<td><a th:href="@{'/pegawai/ubah/'+ ${pegawai.id}}">Ubah </a></td>
+	
+	<form th:action="@{/pegawai/ubah}" method="GET">
+		<input type="hidden" class="col-md-6" th:field="${pegawai.nip}" name="nip">
+		<button type="submit">Ubah</button>		
+	</form>
 </body>
 </html>

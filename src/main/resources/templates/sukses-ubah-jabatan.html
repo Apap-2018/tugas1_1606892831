@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+	<h2>Sukses!</h2>
+	
+	<h3 th:text="'Jabatan ' + ${nipPegawai} +' berhasil diubah"></h3>
+
+</body>
+</html>
