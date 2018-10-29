@@ -17,14 +17,14 @@ public class ProvinsiServiceImpl implements ProvinsiService {
 	private ProvinsiDb provinsiDb;
 
 	@Override
-	public ProvinsiModel findById(Long id) {
-		// TODO Auto-generated method stub
+	public ProvinsiModel getProvinsiById(Long id) {
+		
 		return provinsiDb.findById(id).get();
 	}
 
 	@Override
 	public List<ProvinsiModel> findAll() {
-		// TODO Auto-generated method stub
+		
 		return provinsiDb.findAll();
 	}
 	

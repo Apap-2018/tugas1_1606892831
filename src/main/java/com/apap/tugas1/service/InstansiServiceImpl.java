@@ -19,13 +19,11 @@ public class InstansiServiceImpl implements InstansiService{
 
 	@Override
 	public List<InstansiModel> findAll() {
-		// TODO Auto-generated method stub
 		return instansiDb.findAll();
 	}
 
 	@Override
-	public InstansiModel findById(Long id) {
-		// TODO Auto-generated method stub
+	public InstansiModel getInstansiById(Long id) {
 		return instansiDb.findById(id).get();
 	}
 }

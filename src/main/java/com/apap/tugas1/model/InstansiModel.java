@@ -23,7 +23,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Instansi")
+@Table(name="instansi")
 public class InstansiModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class InstansiModel implements Serializable {
 	private String deskripsi;
 	
 	@OneToMany(mappedBy="instansi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PegawaiModel> instansiPegawai;
+	private List<PegawaiModel> listPegawai;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_provinsi", referencedColumnName = "id", nullable=false)
@@ -72,12 +72,12 @@ public class InstansiModel implements Serializable {
 		this.deskripsi = deskripsi;
 	}
 
-	public List<PegawaiModel> getInstansiPegawai() {
-		return instansiPegawai;
+	public List<PegawaiModel> getListPegawai() {
+		return listPegawai;
 	}
 
-	public void setInstansiPegawai(List<PegawaiModel> instansiPegawai) {
-		this.instansiPegawai = instansiPegawai;
+	public void setListPegawai(List<PegawaiModel> listPegawai) {
+		this.listPegawai = listPegawai;
 	}
 
 	public ProvinsiModel getProvinsi() {
@@ -87,6 +87,7 @@ public class InstansiModel implements Serializable {
 	public void setProvinsi(ProvinsiModel provinsi) {
 		this.provinsi = provinsi;
 	}
+
 	
 	
 }

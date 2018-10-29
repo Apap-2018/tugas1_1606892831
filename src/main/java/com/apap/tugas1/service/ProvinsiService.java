@@ -5,6 +5,6 @@ import java.util.List;
 import com.apap.tugas1.model.ProvinsiModel;
 public interface ProvinsiService {
 
-	ProvinsiModel findById(Long id);
+	ProvinsiModel getProvinsiById(Long id);
 	List<ProvinsiModel> findAll();
 }

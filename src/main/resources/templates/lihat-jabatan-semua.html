@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <object th:include="fragments/fragment :: header" th:remove="tag"></object>
-</head>
-<body>
-  <nav th:replace="fragments/fragment :: navbar"></nav>
+	<head>
+		
+		<object th:include="fragments/fragment :: header" th:remove="tag"></object>
 
-<table id="table" class="display">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Deskripsi</th>
-      <th>Gaji Pokok</th>
-      <th>Jumlah Pegawai</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<tr th:each="jabatan : *{listjabatan}">
-  		<td th:text="${jabatan.nama}"></td>
-  		<td th:text="${jabatan.deskripsi}"></td>
-  		<td th:text="${jabatan.gaji_pokok}"></td>
-      <td th:text="${#list.size(jabatan.jabatanPegawaiList)}"></td>
-    </tr>
-  </tbody>
-</table>
-<script th:src="@{/js/datatable.js}"></script>
-</body>
+	</head>
+	
+	<body>
+	
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<br>
+		<div class="container">
+			<h2 class="card-header" style="text-align:center">Lihat Semua Jabatan</h2>
+			<br>
+			<table id="table_id" class="display">
+				<thead>
+						<tr>
+							<th>Nama</th>
+							<th>Deskripsi</th>
+							<th>Gaji Pokok</th>
+							<th>Jumlah Pegawai
+						
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="jabatan : *{listJabatan}">
+							<td th:text="${jabatan.nama}"></td>
+							<td th:text="${jabatan.deskripsi}"></td>
+							<td th:text="'Rp ' +${#numbers.formatInteger(jabatan.gajiPokok,3,'POINT')}"></td>
+							<td th:text="${#lists.size(jabatan.listJabatanPegawai)}"></td>
+						
+						
+						</tr>
+					</tbody>
+				
+			</table>
+	
+		</div>
+	
+		<script th:src="@{/js/datatable.js}"></script>
+		
+		<script type="text/javascript">
+		$(document).ready(function () {
+		    $("#lihatJabatan").addClass("active");    
+		        
+		});
+		
+		</script>
+			
+	</body>
 </html>

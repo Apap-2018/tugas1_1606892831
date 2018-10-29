@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="Provinsi")
+@Table(name="provinsi")
 public class ProvinsiModel implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,10 +29,10 @@ public class ProvinsiModel implements Serializable{
 	
 	@NotNull
 	@Column(name="presentase_tunjangan", nullable=false)
-	private Double presentase_tunjangan;
+	private Double presentaseTunjangan;
 	
 	@OneToMany(mappedBy="provinsi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<InstansiModel> provinsiInstansi;
+	private List<InstansiModel> listProvinsiInstansi;
 
 	public long getId() {
 		return id;
@@ -50,21 +50,22 @@ public class ProvinsiModel implements Serializable{
 		this.nama = nama;
 	}
 
-	public Double getPresentase_tunjangan() {
-		return presentase_tunjangan;
+	public Double getPresentaseTunjangan() {
+		return presentaseTunjangan;
 	}
 
-	public void setPresentase_tunjangan(Double presentase_tunjangan) {
-		this.presentase_tunjangan = presentase_tunjangan;
+	public void setPresentaseTunjangan(Double presentase_tunjangan) {
+		this.presentaseTunjangan = presentase_tunjangan;
 	}
 
-	public List<InstansiModel> getProvinsiInstansi() {
-		return provinsiInstansi;
+	public List<InstansiModel> getListProvinsiInstansi() {
+		return listProvinsiInstansi;
 	}
 
-	public void setProvinsiInstansi(List<InstansiModel> provinsiInstansi) {
-		this.provinsiInstansi = provinsiInstansi;
+	public void setListProvinsiInstansi(List<InstansiModel> listProvinsiInstansi) {
+		this.listProvinsiInstansi = listProvinsiInstansi;
 	}
+
 	
 	
 }

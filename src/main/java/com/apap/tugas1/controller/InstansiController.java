@@ -20,7 +20,7 @@ public class InstansiController {
 	
 	@RequestMapping(value = "/instansi/tambah", method = RequestMethod.GET)
 	public @ResponseBody List<InstansiModel> instansiSearch(@RequestParam(value = "provinsiId", required = true) Long provinsiId){
-		ProvinsiModel provinsi = provinsiService.findById(provinsiId);
-		return provinsi.getProvinsiInstansi();
+		ProvinsiModel provinsi = provinsiService.getProvinsiById(provinsiId);
+		return provinsi.getListProvinsiInstansi();
 	}
 }

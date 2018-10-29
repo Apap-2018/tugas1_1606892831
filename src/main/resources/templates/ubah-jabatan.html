@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<object th:include="fragments/fragment :: header" th:remove="tag"></object>
-<body>
-	<nav th:replace="fragments/fragment :: navbar"></nav>
-	
-	<h3>Ubah Jabatan</h3>
-	<form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="POST">
-		<input type="hidden" name="id" th:value="${jabatan.id}">
+	<head>
+		<object th:include="fragments/fragment :: header" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<div class="container">
+			<div th:if="${message}">
+				<div class="alert alert-success alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Sukses</strong> Jabatan berhasil diubah
+				</div>
+			</div>
+			<form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="POST">
+				<h2 class="card-header" style="text-align:center">Ubah Jabatan</h2>
+				<input type="hidden" name="id" th:value="${jabatan.id}">
 				<p>
 				<div class="row">
-					<div class="col-lg-4">Nama</div>
-					<div class="col-lg-4">
-						<input type="text" name="nama" th:value="${jabatan.nama}">
+					<label class="col-lg-4" for="nama">Nama</label>
+					<div class="col-lg-8">
+						<input class="form-control" type="text" name="nama" th:value="${jabatan.nama}" required>
 					</div>
 				</div>
-				</p>
-				
 				<p>
 				<div class="row">
-					<div class="col-lg-4">Deskripsi</div>
-					<div class="col-lg-4">
-						<input type="text" name="deskripsi" th:value="${jabatan.deskripsi}">
+					<label class="col-lg-4" for="deskripsi">Deskripsi</label>
+					<div class="col-lg-8">
+						<input class="form-control" type="text" name="deskripsi" th:value="${jabatan.deskripsi}" required>
 					</div>
 				</div>
-				</p>
-				
 				<p>
 				<div class="row">
-					<div class="col-lg-4">Gaji Pokok</div>
-					<div class="col-lg-4">
-						<input type="number" name="gaji_pokok" step="1" th:value="${jabatan.gaji_pokok}">
+					<label class="col-lg-4" for="gajiPokok">Gaji Pokok</label>
+					<div class="col-lg-8">
+						<input class="form-control" type="number" name="gajiPokok" step="1" th:value="${jabatan.gajiPokok}" required>
 					</div>
 				</div>
-				</p>
-	</form>
-</body>
+				<button class="btn btn-primary" type="submit">Simpan</button>
+			</form>
+		</div>
+	</body>
 </html>

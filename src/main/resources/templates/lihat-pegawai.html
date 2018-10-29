@@ -1,35 +1,76 @@
 <!DOCTYPE html>
-<html xlmns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <object th:include="fragments/fragment :: header" th:remove="tag"></object>
 <body>
-<nav th:replace="fragments/fragment :: navbar"
+	<nav th:replace="fragments/fragment :: navbar"
 	></nav>
-	
-	<h2 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h2>
-	<h3 th:text="'NIP 					: ' + ${pegawai.nip}"></h3>
-	<h3 th:text="'Nama 					: ' + ${pegawai.nama}"></h3>
-	<h3 th:text="'Tempat Lahir 			: ' + ${pegawai.tempat_lahir}"></h3>
-	<h3 th:text="'Tanggal Lahir 		: ' + ${pegawai.tanggal_lahir}"></h3>
-	<h3 th:text="'Tahun Masuk			: ' + ${pegawai.tahun_masuk}"></h3>
-	<h3 th:text="'Nama Instansi			: ' + ${instansi.nama}"></h3>
-	<p>
+	<br>
+	<div class="container">
+		<h2 class="card-header" style="text-align:center" th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h2>
+		<br>
 		<div class="row">
-			<div class="col-lg-4">Jabatan</div>
+			<div class="col-lg-4">
+				<h3>NIP</h3>
+			</div>
+			<h3 th:text="${pegawai.nip}" class="col-lg-8"></h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Nama</h3>
+			</div>
+			<h3 th:text="${pegawai.nama}" class="col-lg-8"></h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Tempat Lahir</h3>
+			</div>
+			<h3 th:text="${pegawai.tempatLahir}" class="col-lg-8"></h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Tanggal Lahir</h3>
+			</div>
+			<h3 th:text="${pegawai.tanggalLahir}" class="col-lg-8"></h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Tahun Masuk</h3>
+			</div>
+			<h3 th:text="${pegawai.tahunMasuk}" class="col-lg-8"></h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Nama Instansi</h3>
+			</div>
+			<h3 th:text="${instansi.nama}" class="col-lg-8"></h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Jabatan</h3>
+			</div>
 			<div class="col-lg-8">
 				<ul th:each="jabatan : ${listJabatan}">
-					<li th:text="${jabatan.jabatan.nama}" ></li>
-					
+					<li th:text="${jabatan.jabatan.nama}" ></li>	
 				</ul>
 			</div>
 		</div>
-	</p>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Gaji</h3>
+			</div>
+			<h3 th:text="'Rp '+${gaji}"></h3>
+		</div>
+		<div class="row">
+			<form th:action="@{/pegawai/ubah}" method="GET">
+				<input type="hidden" class="col-md-4" th:field="${pegawai.nip}" name="nip">
+				<button type="submit" class="btn btn-primary">Ubah</button>		
+			</form>
+		</div>
+	</div>
 	<br>
-	<h3 th:text="'Gaji : Rp '+ ${gaji} " ></h3>
 	
-	<form th:action="@{/pegawai/ubah}" method="GET">
-		<input type="hidden" class="col-md-6" th:field="${pegawai.nip}" name="nip">
-		<button type="submit">Ubah</button>		
-	</form>
+	
+	
 </body>
 </html>

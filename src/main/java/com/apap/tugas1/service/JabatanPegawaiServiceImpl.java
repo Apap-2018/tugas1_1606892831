@@ -16,7 +16,6 @@ public class JabatanPegawaiServiceImpl implements JabatanPegawaiService{
 	
 	@Override
 	public void tambahJabatan(JabatanPegawaiModel jabatanPegawai) {
-		// TODO Auto-generated method stub
 		jabatanPegawaiDb.save(jabatanPegawai);
 		
 	}

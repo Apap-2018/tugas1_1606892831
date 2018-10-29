@@ -14,7 +14,10 @@ import com.apap.tugas1.model.PegawaiModel;
 public interface PegawaiDb extends JpaRepository<PegawaiModel, Long>{
 
 	PegawaiModel findByNip(String nip);
+
+	List<PegawaiModel> findByInstansiOrderByTanggalLahirAsc(InstansiModel instansi);
+
+	List<PegawaiModel> findByTanggalLahirAndTahunMasukAndInstansi(Date tanggalLahir, String tahunMasuk, InstansiModel instansi);
 	
-//	List<PegawaiModel> byInstansiOrderByTanggalLahirAsc(InstansiModel instansi);	
-//	List<PegawaiModel> tanggal_lahirAndTahunMasukAndInstansi(Date tanggalLahir, String tahunMasuk, InstansiModel instansi);
+	List<PegawaiModel> findByInstansi(InstansiModel instansi);
 }

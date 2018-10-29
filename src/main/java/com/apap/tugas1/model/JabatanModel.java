@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="Jabatan")
+@Table(name="jabatan")
 public class JabatanModel implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,10 +34,10 @@ public class JabatanModel implements Serializable{
 	
 	@NotNull
 	@Column(name="gaji_pokok", nullable=false)
-	private Double gaji_pokok;
+	private Double gajiPokok;
 
 	@OneToMany(mappedBy = "jabatan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<JabatanPegawaiModel> jabatanPegawaiList;
+	private List<JabatanPegawaiModel> listJabatanPegawai;
 
 	
 	public long getId() {
@@ -64,22 +64,22 @@ public class JabatanModel implements Serializable{
 		this.deskripsi = deskripsi;
 	}
 
-	public Double getGaji_pokok() {
-		return gaji_pokok;
+	public Double getGajiPokok() {
+		return gajiPokok;
 	}
 
-	public void setGaji_pokok(Double gaji_pokok) {
-		this.gaji_pokok = gaji_pokok;
+	public void setGajiPokok(Double gaji_pokok) {
+		this.gajiPokok = gaji_pokok;
+	}
+
+	public List<JabatanPegawaiModel> getListJabatanPegawai() {
+		return listJabatanPegawai;
+	}
+
+	public void setListJabatanPegawai(List<JabatanPegawaiModel> listJabatanPegawai) {
+		this.listJabatanPegawai = listJabatanPegawai;
 	}
 	
 
-	public List<JabatanPegawaiModel> getJabatanPegawaiList() {
-		return jabatanPegawaiList;
-	}
-
-	public void setJabatanPegawai(List<PegawaiModel> jabatanPegawai) {
-		this.jabatanPegawaiList = jabatanPegawaiList;
-	}
-	
 	
 }

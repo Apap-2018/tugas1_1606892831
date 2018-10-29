@@ -5,38 +5,44 @@
 </head>
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	
-	<h3>Tambah Jabatan</h3>
-	<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
-		<p>
-				<div class="row">
-					<div class="col-lg-4">Nama</div>
-					<div class="col-lg-4">
-						<input type="text" name="nama" >
-					</div>
+	<br>
+	<div class="container">
+		<h2 class="card-header" style="text-align:center">Tambah Jabatan</h2>
+		<br>
+		<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+			<div class="row">
+				<div class="col-lg-8" style="text-align:center">Nama</div>
+				<div class="col-lg-4">
+					<input type="text" name="nama" >
 				</div>
-				</p>
-				
-				<p>
-				<div class="row">
-					<div class="col-lg-4">Deskripsi</div>
-					<div class="col-lg-4">
-						<input type="text" name="deskripsi">
-					</div>
+			</div>	
+			<br>
+			<div class="row">
+				<div class="col-lg-8" style="text-align:center">Deskripsi</div>
+				<div class="col-lg-4">
+					<input type="text" name="deskripsi">
 				</div>
-				</p>
-				
-				<p>
-				<div class="row">
-					<div class="col-lg-4">Gaji Pokok</div>
-					<div class="col-lg-4">
-						<input type="number" name="gaji_pokok" step="1">
-					</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-8" style="text-align:center">Gaji Pokok</div>
+				<div class="col-lg-4">
+					<input type="number" name="gajiPokok" step="1">
 				</div>
-				</p>
-			
-				
-				<button type="submit">Simpan</button>
+			</div>
+			<br>	
+			<div class="row">
+				<div class="col-md-12" style="text-align:center">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</div>
 	</form>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$("#tambahJabatan").addClass("active");     
+	});
+	</script>
 </body>
 </html>
